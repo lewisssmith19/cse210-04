@@ -52,15 +52,15 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: 
 Lewis (smi21061@byui.edu)
-Monica
-Cristopher
-James
-Johnathan
+Monica (monica.barrerach@gmail.com)
+Cristopher (higham.chr@gmail.com)
+James (tho21065@byui.edu)
+Johnathan (johnathanruiz@gmail.com)
 
+# TODO: 
 Lewis (keyboard.py) (readMe) 
 Monica (director.py)
-Cristopher (artifact.py)
+Cristopher (artifact.py)  
 James (actor.py)
 Johnathan (point.py)
