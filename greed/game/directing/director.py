@@ -17,6 +17,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._score = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -31,6 +32,8 @@ class Director:
             self._do_outputs(cast)
         self._video_service.close_window()
 
+        print(f"\n\nYour Final Score: {self._score}\n\n")
+
     def _get_inputs(self, cast):
         """Gets directional input from the keyboard and applies it to the robot.
         
@@ -42,7 +45,7 @@ class Director:
         robot.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the robot's position and resolves any collisions with artifacts.
+        """Updates the robot's position, moves the artifacts, and resolves any collisions with artifacts.
         
         Args:
             cast (Cast): The cast of actors.
@@ -51,15 +54,22 @@ class Director:
         robot = cast.get_first_actor("robots")
         artifacts = cast.get_actors("artifacts")
 
-        banner.set_text("")
+        banner.set_text(f"Score: {self._score}")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
         
         for artifact in artifacts:
+            # Move the artifact down
+            artifact.move_next(max_x, max_y)
+
             if robot.get_position().equals(artifact.get_position()):
-                message = artifact.get_message()
-                banner.set_text(message)    
+                # We don't need this
+                """message = artifact.get_message()
+                banner.set_text(message)"""
+
+                # Delete the artifact
+                cast.remove_actor("artifacts", artifact)
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
