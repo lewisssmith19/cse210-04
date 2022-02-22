@@ -1,31 +1,33 @@
 from game.casting.actor import Actor
+import random
 
 
 class Artifact(Actor):
     """
     An item of cultural or historical interest. 
+    It may be a gem (good) or a rock (bad).
     
-    The responsibility of an Artifact is to provide a message about itself.
+    The artifact provides a point if it is a gem, 
+    or takes away a point if it is a rock.
 
     Attributes:
-        _message (string): A short description about the artifact.
+        Inherits all attributes of actor.
+        _type (string): It is either a gem or a rock.
+        _value (int): +1 for a gem, -1 for a rock.
     """
     def __init__(self):
         super().__init__()
-        self._message = ""
-        
-    def get_message(self):
-        """Gets the artifact's message.
+        self._type = random.choice('gem', 'rock')
+
+        if self._type == 'gem':
+            self._value = 1
+        elif self._type == 'rock':
+            self._value = -1
+    
+    def get_value(self):
+        """Gets the artifact's value.
         
         Returns:
-            string: The message.
+            int: The value(+1 or -1).
         """
-        return self._message
-    
-    def set_message(self, message):
-        """Updates the message to the given one.
-        
-        Args:
-            message (string): The given message.
-        """
-        self._message = message
+        return self._value
