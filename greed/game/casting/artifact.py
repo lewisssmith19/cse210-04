@@ -36,7 +36,7 @@ class Artifact(Actor):
 from game.casting.actor import Actor
 
 
-class Stone(Actor):
+class Artifact(Actor):
     """
     An item of cultural or historical interest. 
     
