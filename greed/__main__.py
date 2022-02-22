@@ -4,6 +4,7 @@ import random
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
+from game.casting.cast import Score
 
 from game.directing.director import Director
 
@@ -14,16 +15,17 @@ from game.shared.color import Color
 from game.shared.point import Point
 
 
-FRAME_RATE = 12
+FRAME_RATE = 25
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
-FONT_SIZE = 15
+FONT_SIZE = 20
 COLS = 60
 ROWS = 40
 CAPTION = "Greed" # Mod ---
 #DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt" # We can delete this
 WHITE = Color(255, 255, 255)
+RED = Color(255, 0, 0)
 DEFAULT_ARTIFACTS = 50 # Test, Original-> 40
 ARTIFACTS_SHAPES = ["*","O"] # Mod ----------
 VELOCITY = Point(0, 5) # Mod ---
@@ -83,12 +85,18 @@ def main():
         artifact.set_position(position)
         artifact.set_velocity(VELOCITY)
 
-        # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
-        if artifact.get_text() == "O":
-            artifact.set_value(-1)
+   # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
+   if artifact.get_text() == "O":
+        artifact.set_value(-1)
         #artifact.set_message(message)
         cast.add_actor("artifacts", artifact)
-    
+        
+    # create initial score    
+    score = Score()
+    score.set_position(Point(MAX_X // 2, 15))
+    score.set_color(RED)
+    cast.add_actor("score", score)
+        
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
