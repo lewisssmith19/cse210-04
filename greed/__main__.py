@@ -25,7 +25,7 @@ CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 RED = Color(255, 0, 0)
 DEFAULT_ARTIFACTS = 50 # Test, Original-> 40
-ARTIFACTS_SHAPES = ["*","O"]
+ARTIFACTS_SHAPES = ["|*|","O"]
 VELOCITY = Point(0, 5)
 
 
