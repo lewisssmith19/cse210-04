@@ -1,10 +1,9 @@
-import os # We can delete this
 import random
 
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
-from game.casting.score import Score
+from game.casting.score import Score #?
 
 from game.directing.director import Director
 
@@ -15,20 +14,19 @@ from game.shared.color import Color
 from game.shared.point import Point
 
 
-FRAME_RATE = 25
+FRAME_RATE = 12
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
-FONT_SIZE = 20
+FONT_SIZE = 15
 COLS = 60
 ROWS = 40
-CAPTION = "Greed" # Mod ---
-#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt" # We can delete this
+CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 RED = Color(255, 0, 0)
 DEFAULT_ARTIFACTS = 50 # Test, Original-> 40
-ARTIFACTS_SHAPES = ["*","O"] # Mod ----------
-VELOCITY = Point(0, 5) # Mod ---
+ARTIFACTS_SHAPES = ["*","O"]
+VELOCITY = Point(0, 5)
 
 
 def main():
@@ -55,13 +53,6 @@ def main():
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
-    
-    ### I think we don't need this -> --------------
-    '''
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()'''
-    # ------------------------------------------- <- 
 
     # create the artifacts
     for _ in range(DEFAULT_ARTIFACTS): # Mod ---
@@ -85,17 +76,21 @@ def main():
         artifact.set_position(position)
         artifact.set_velocity(VELOCITY)
 
-    # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
-    if artifact.get_text() == "O":
-        artifact.set_value(-1)
-        #artifact.set_message(message)
+        # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
+        if artifact.get_text() == "O":
+            artifact.set_value(-1)
+            #artifact.set_message(message)
+
         cast.add_actor("artifacts", artifact)
         
+    
+    """
+    ##### Hello, I commented this because we already have a score in Director class
     # create initial score    
     score = Score()
     score.set_position(Point(MAX_X // 2, 15))
     score.set_color(RED)
-    cast.add_actor("score", score)
+    cast.add_actor("score", score)"""
         
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)

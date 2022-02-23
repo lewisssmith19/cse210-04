@@ -64,9 +64,7 @@ class Director:
             artifact.move_next(max_x, max_y)
 
             if robot.get_position().equals(artifact.get_position()):
-                # We don't need this
-                """message = artifact.get_message()
-                banner.set_text(message)"""
+                self._score += artifact.get_value()
 
                 # Delete the artifact
                 cast.remove_actor("artifacts", artifact)
