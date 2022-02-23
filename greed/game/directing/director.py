@@ -1,3 +1,10 @@
+import random
+from game.shared.point import Point
+
+CELL_SIZE = 15
+COLS = 60
+ROWS = 40
+
 class Director:
     """A person who directs the game. 
     
@@ -67,7 +74,14 @@ class Director:
                 self._score += artifact.get_value()
 
                 # Delete the artifact
-                cast.remove_actor("artifacts", artifact)
+                #cast.remove_actor("artifacts", artifact)
+
+                # Move the artifact to a new position
+                x = random.randint(1, COLS - 1)
+                y = random.randint(1, ROWS / 2) # Mod ---------------------
+                position = Point(x, y)
+                position = position.scale(CELL_SIZE)
+                artifact.set_position(position)
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
