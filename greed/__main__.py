@@ -4,7 +4,7 @@ import random
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
-from game.casting.cast import Score
+from game.casting.score import Score
 
 from game.directing.director import Director
 
@@ -85,8 +85,8 @@ def main():
         artifact.set_position(position)
         artifact.set_velocity(VELOCITY)
 
-   # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
-   if artifact.get_text() == "O":
+    # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
+    if artifact.get_text() == "O":
         artifact.set_value(-1)
         #artifact.set_message(message)
         cast.add_actor("artifacts", artifact)
